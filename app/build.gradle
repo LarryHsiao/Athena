@@ -1,0 +1,70 @@
+apply plugin: 'com.android.application'
+apply plugin: 'jacoco'
+
+android {
+    compileSdkVersion 26
+    defaultConfig {
+        applicationId "com.silverhetch.athena"
+        minSdkVersion 19
+        targetSdkVersion 26
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        debug {
+            testCoverageEnabled = true
+        }
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    testOptions {
+        unitTests {
+            includeAndroidResources = true
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'com.android.support:appcompat-v7:26.1.0'
+    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+    testImplementation 'junit:junit:4.12'
+    testImplementation "org.robolectric:robolectric:3.5.1"
+    androidTestImplementation 'com.android.support.test:runner:1.0.1'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+}
+
+project.afterEvaluate {
+
+    android.applicationVariants.all { variant ->
+        def name = variant.name
+        def testTaskName = "test${name.capitalize()}UnitTest"
+
+        tasks.create(name: "${testTaskName}Coverage", type: JacocoReport, dependsOn: "$testTaskName") {
+            group = "Reporting"
+            description = "Generate Jacoco coverage reports for the ${name.capitalize()} build."
+
+            classDirectories = fileTree(
+                    dir: "${project.buildDir}/intermediates/classes/${name}",
+                    includes: ['**/com/silverhetch/athena/**'],
+                    excludes: ['**/R.class',
+                               '**/R$*.class',
+                               '**/*$ViewInjector*.*',
+                               '**/*$ViewBinder*.*',
+                               '**/BuildConfig.*',
+                               '**/Manifest*.*']
+            )
+
+            sourceDirectories = files(['src/main/java'].plus(android.sourceSets[name].java.srcDirs))
+            executionData = files("${project.buildDir}/jacoco/${testTaskName}.exec")
+
+            reports {
+                xml.enabled = true
+                html.enabled = true
+            }
+        }
+    }
+}
