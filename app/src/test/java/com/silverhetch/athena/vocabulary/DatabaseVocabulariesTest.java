@@ -22,6 +22,7 @@ public class DatabaseVocabulariesTest {
         DatabaseVocabularies vocabularies = new DatabaseVocabularies(databaseFactory);
         vocabularies.add("word", "note" );
         Vocabulary insertedVocabulary = vocabularies.all()[0];
+        Assert.assertEquals(1, insertedVocabulary.id());
         Assert.assertEquals("word", insertedVocabulary.value());
         Assert.assertEquals("note", insertedVocabulary.note());
     }
