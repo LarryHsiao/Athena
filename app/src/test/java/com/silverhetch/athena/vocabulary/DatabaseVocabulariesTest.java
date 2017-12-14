@@ -11,6 +11,10 @@ import org.junit.runner.RunWith;
 import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
 
+import static junit.framework.Assert.assertEquals;
+import static junit.framework.Assert.assertTrue;
+import static junit.framework.Assert.fail;
+
 /**
  * Created by mikes on 12/13/2017.
  */
@@ -26,34 +30,45 @@ public class DatabaseVocabulariesTest {
     @Test
     public void insert_checkContent() throws Exception {
         DatabaseVocabularies vocabularies = new DatabaseVocabularies(databaseFactory);
-        Vocabulary insertedVocabulary = vocabularies.add("word", "note" );
-        Assert.assertEquals(1, insertedVocabulary.id());
-        Assert.assertEquals("word", insertedVocabulary.value());
-        Assert.assertEquals("note", insertedVocabulary.note());
+        Vocabulary insertedVocabulary = vocabularies.add("word", "note");
+        assertEquals(1, insertedVocabulary.id());
+        assertEquals("word", insertedVocabulary.value());
+        assertEquals("note", insertedVocabulary.note());
     }
 
     @Test
     public void query_checkContent() throws Exception {
         DatabaseVocabularies vocabularies = new DatabaseVocabularies(databaseFactory);
-        vocabularies.add("word", "note" );
+        vocabularies.add("word", "note");
         Vocabulary insertedVocabulary = vocabularies.all()[0];
-        Assert.assertEquals(1, insertedVocabulary.id());
-        Assert.assertEquals("word", insertedVocabulary.value());
-        Assert.assertEquals("note", insertedVocabulary.note());
+        assertEquals(1, insertedVocabulary.id());
+        assertEquals("word", insertedVocabulary.value());
+        assertEquals("note", insertedVocabulary.note());
     }
 
     @Test
     public void insert_checkCount() throws Exception {
         DatabaseVocabularies vocabularies = new DatabaseVocabularies(databaseFactory);
-        vocabularies.add("word", "note" );
-        Assert.assertEquals(1, vocabularies.all().length);
+        vocabularies.add("word", "note");
+        assertEquals(1, vocabularies.all().length);
+    }
+
+    @Test
+    public void insert_invalidedValues() throws Exception {
+        try {
+            DatabaseVocabularies vocabularies = new DatabaseVocabularies(databaseFactory);
+            vocabularies.add(null, "note");
+            fail();
+        } catch (Exception ignore) {
+            assertTrue(true);
+        }
     }
 
     @Test
     public void delete_checkCount() throws Exception {
         DatabaseVocabularies vocabularies = new DatabaseVocabularies(databaseFactory);
-        Vocabulary vocabulary = vocabularies.add("word", "note" );
+        Vocabulary vocabulary = vocabularies.add("word", "note");
         vocabulary.delete();
-        Assert.assertEquals(0, vocabularies.all().length);
+        assertEquals(0, vocabularies.all().length);
     }
 }

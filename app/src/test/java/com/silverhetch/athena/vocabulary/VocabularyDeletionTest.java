@@ -26,7 +26,17 @@ public class VocabularyDeletionTest {
     public void delete_checkCount() throws Exception {
         DatabaseVocabularies vocabularies = new DatabaseVocabularies(databaseFactory);
         Vocabulary vocabulary = vocabularies.add("word", "note");
-        new VocabularyDeletion(databaseFactory,vocabulary.id()).delete();
+        new VocabularyDeletion(databaseFactory, vocabulary.id()).delete();
         Assert.assertEquals(0, vocabularies.all().length);
+    }
+
+    @Test
+    public void delete_failed() throws Exception {
+        try {
+            new VocabularyDeletion(databaseFactory, 0).delete();
+            Assert.fail("not throwing");
+        } catch (Exception ignore) {
+            Assert.assertTrue(true);
+        }
     }
 }
