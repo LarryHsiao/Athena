@@ -17,5 +17,4 @@ public class DatabaseFactory {
     public SQLiteDatabase database() {
         return new AthenaSQLite(context).getWritableDatabase();
     }
-
 }

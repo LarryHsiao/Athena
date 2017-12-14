@@ -1,6 +1,9 @@
 apply plugin: 'com.android.application'
 apply plugin: 'jacoco'
 
+jacoco {
+    toolVersion = "0.7.9"
+}
 android {
     compileSdkVersion 26
     defaultConfig {
@@ -23,6 +26,11 @@ android {
     testOptions {
         unitTests {
             includeAndroidResources = true
+            all{
+                jacoco {
+                    includeNoLocationClasses = true
+                }
+            }
         }
     }
 }
@@ -40,7 +48,6 @@ dependencies {
 }
 
 project.afterEvaluate {
-
     android.applicationVariants.all { variant ->
         def name = variant.name
         def testTaskName = "test${name.capitalize()}UnitTest"
