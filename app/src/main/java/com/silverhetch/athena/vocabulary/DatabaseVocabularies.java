@@ -28,7 +28,7 @@ class DatabaseVocabularies implements Vocabularies {
             insertValues.put("note", note);
             final long insertedId = database.insert("vocabulary", null, insertValues);
             if (-1 == insertedId) {
-                throw new RuntimeException("insertion failed" );
+                throw new RuntimeException("insertion failed");
             }
             return new ContentValuesVocabulary(databaseFactory, insertedId, insertValues);
         }
@@ -42,9 +42,9 @@ class DatabaseVocabularies implements Vocabularies {
             List<Vocabulary> result = new ArrayList<>();
             while (cursor.moveToNext()) {
                 result.add(new ConstVocabulary(databaseFactory,
-                        cursor.getLong(cursor.getColumnIndex("id" )),
-                        cursor.getString(cursor.getColumnIndex("value" )),
-                        cursor.getString(cursor.getColumnIndex("note" ))));
+                        cursor.getLong(cursor.getColumnIndex("id")),
+                        cursor.getString(cursor.getColumnIndex("value")),
+                        cursor.getString(cursor.getColumnIndex("note"))));
             }
             return result.toArray(new Vocabulary[result.size()]);
         }

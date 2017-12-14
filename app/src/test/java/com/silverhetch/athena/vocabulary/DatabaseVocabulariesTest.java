@@ -41,4 +41,19 @@ public class DatabaseVocabulariesTest {
         Assert.assertEquals("word", insertedVocabulary.value());
         Assert.assertEquals("note", insertedVocabulary.note());
     }
+
+    @Test
+    public void insert_checkCount() throws Exception {
+        DatabaseVocabularies vocabularies = new DatabaseVocabularies(databaseFactory);
+        vocabularies.add("word", "note" );
+        Assert.assertEquals(1, vocabularies.all().length);
+    }
+
+    @Test
+    public void delete_checkCount() throws Exception {
+        DatabaseVocabularies vocabularies = new DatabaseVocabularies(databaseFactory);
+        Vocabulary vocabulary = vocabularies.add("word", "note" );
+        vocabulary.delete();
+        Assert.assertEquals(0, vocabularies.all().length);
+    }
 }

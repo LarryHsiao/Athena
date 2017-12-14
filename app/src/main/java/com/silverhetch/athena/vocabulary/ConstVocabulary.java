@@ -6,13 +6,13 @@ import com.silverhetch.athena.database.DatabaseFactory;
  * Created by mikes on 12/13/2017.
  */
 
-public class ConstVocabulary implements Vocabulary {
+class ConstVocabulary implements Vocabulary {
     private final DatabaseFactory databaseFactory;
     private final long id;
     private final String value;
     private final String note;
 
-    public ConstVocabulary(DatabaseFactory databaseFactory, long id, String value, String note) {
+    ConstVocabulary(DatabaseFactory databaseFactory, long id, String value, String note) {
         this.databaseFactory = databaseFactory;
         this.id = id;
         this.value = value;
@@ -37,6 +37,6 @@ public class ConstVocabulary implements Vocabulary {
 
     @Override
     public void delete() {
-
+        new VocabularyDelection(databaseFactory, id).delete();
     }
 }

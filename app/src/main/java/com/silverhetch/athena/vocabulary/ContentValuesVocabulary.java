@@ -1,7 +1,6 @@
 package com.silverhetch.athena.vocabulary;
 
 import android.content.ContentValues;
-import android.database.sqlite.SQLiteDatabase;
 
 import com.silverhetch.athena.database.DatabaseFactory;
 
@@ -27,18 +26,16 @@ class ContentValuesVocabulary implements Vocabulary {
 
     @Override
     public String value() {
-        return values.getAsString("value" );
+        return values.getAsString("value");
     }
 
     @Override
     public String note() {
-        return values.getAsString("note" );
+        return values.getAsString("note");
     }
 
     @Override
     public void delete() {
-        try (SQLiteDatabase database = databaseFactory.database()) {
-            // TODO: 12/13/2017 delete task
-        }
+        new VocabularyDelection(databaseFactory, id).delete();
     }
 }

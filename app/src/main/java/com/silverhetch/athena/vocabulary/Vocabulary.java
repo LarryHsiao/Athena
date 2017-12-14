@@ -6,7 +6,10 @@ package com.silverhetch.athena.vocabulary;
 
 public interface Vocabulary {
     long id();
+
     String value();
+
     String note();
+
     void delete();
 }
