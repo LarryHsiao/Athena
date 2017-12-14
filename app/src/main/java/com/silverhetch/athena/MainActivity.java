@@ -9,10 +9,10 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.fragment_vocabulary);
+        setContentView(R.layout.activity_main);
 
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.vocabularyList_recyclerView, VocabularyListFragment.newInstance());
+        fragmentTransaction.replace(R.id.main_fragmentContainer, VocabularyListFragment.newInstance());
         fragmentTransaction.commit();
     }
 }
