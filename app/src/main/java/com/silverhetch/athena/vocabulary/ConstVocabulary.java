@@ -37,6 +37,6 @@ class ConstVocabulary implements Vocabulary {
 
     @Override
     public void delete() {
-        new VocabularyDelection(databaseFactory, id).delete();
+        new VocabularyDeletion(databaseFactory, id).delete();
     }
 }

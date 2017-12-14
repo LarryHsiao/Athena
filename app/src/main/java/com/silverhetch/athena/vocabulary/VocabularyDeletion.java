@@ -8,11 +8,11 @@ import com.silverhetch.athena.database.DatabaseFactory;
  * Created by mikes on 12/14/2017.
  */
 
-class VocabularyDelection {
+class VocabularyDeletion {
     private final DatabaseFactory databaseFactory;
     private final long id;
 
-    VocabularyDelection(DatabaseFactory databaseFactory, long id) {
+    VocabularyDeletion(DatabaseFactory databaseFactory, long id) {
         this.databaseFactory = databaseFactory;
         this.id = id;
     }

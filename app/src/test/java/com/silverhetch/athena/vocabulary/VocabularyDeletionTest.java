@@ -14,7 +14,7 @@ import org.robolectric.RobolectricTestRunner;
  * Created by mikes on 12/14/2017.
  */
 @RunWith(RobolectricTestRunner.class)
-public class VocabularyDelectionTest {
+public class VocabularyDeletionTest {
     private DatabaseFactory databaseFactory;
 
     @Before
@@ -26,7 +26,7 @@ public class VocabularyDelectionTest {
     public void delete_checkCount() throws Exception {
         DatabaseVocabularies vocabularies = new DatabaseVocabularies(databaseFactory);
         Vocabulary vocabulary = vocabularies.add("word", "note");
-        new VocabularyDelection(databaseFactory,vocabulary.id()).delete();
+        new VocabularyDeletion(databaseFactory,vocabulary.id()).delete();
         Assert.assertEquals(0, vocabularies.all().length);
     }
 }
