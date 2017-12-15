@@ -49,4 +49,12 @@ class DatabaseVocabularies implements Vocabularies {
             return result.toArray(new Vocabulary[result.size()]);
         }
     }
+
+    @Override
+    public void clear() {
+        try (SQLiteDatabase database = databaseFactory.database();
+        ) {
+            database.delete("vocabulary", null,null);
+        }
+    }
 }

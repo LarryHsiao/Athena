@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.silverhetch.athena.MainActivity;
 
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.Robolectric;
@@ -16,6 +17,13 @@ import static org.junit.Assert.assertEquals;
  */
 @RunWith(RobolectricTestRunner.class)
 public class ConstVocabularyTest {
+    @Before
+    public void setUp() throws Exception {
+        final Context context = Robolectric.setupActivity(MainActivity.class);
+        Vocabularies vocabularies = new VocabulariesFactory(context).vocabularies();
+        vocabularies.clear();
+    }
+
     @Test
     public void delete() throws Exception {
         final Context context = Robolectric.setupActivity(MainActivity.class);

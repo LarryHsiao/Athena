@@ -42,7 +42,7 @@ public class VocabularyListAdapter extends RecyclerView.Adapter<DataBindingViewH
             public boolean onLongClick(View v) {
                 vocabulary.delete();
                 final int index = data.indexOf(vocabulary);
-                data.remove(index );
+                data.remove(index);
                 notifyItemRemoved(index);
                 return true;
             }

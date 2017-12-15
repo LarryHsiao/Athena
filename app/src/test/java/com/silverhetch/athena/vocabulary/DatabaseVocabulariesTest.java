@@ -71,4 +71,12 @@ public class DatabaseVocabulariesTest {
         vocabulary.delete();
         assertEquals(0, vocabularies.all().length);
     }
+
+    @Test
+    public void clear() throws Exception {
+        DatabaseVocabularies vocabularies = new DatabaseVocabularies(databaseFactory);
+        Vocabulary vocabulary = vocabularies.add("123","note");
+        vocabulary.delete();
+        assertEquals(0, vocabularies.all().length);
+    }
 }

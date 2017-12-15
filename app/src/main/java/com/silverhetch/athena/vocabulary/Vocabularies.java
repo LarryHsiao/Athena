@@ -8,4 +8,6 @@ public interface Vocabularies {
     Vocabulary add(String vocabulary, String note);
 
     Vocabulary[] all();
+
+    void clear();
 }
