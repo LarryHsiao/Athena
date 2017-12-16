@@ -20,11 +20,10 @@ class AthenaSQLite extends SQLiteOpenHelper {
                 "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 "value TEXT NOT NULL, " +
                 "note  TEXT NOT NULL " +
-                ");" );
+                ");");
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
     }
 }

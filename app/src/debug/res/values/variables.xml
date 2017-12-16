@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <bool name="app_debug">true</bool>
+    <bool name="app_release">false</bool>
+</resources>
