@@ -49,6 +49,17 @@ public class VocabularyListAdapter extends RecyclerView.Adapter<DataBindingViewH
         });
     }
 
+    public void add(Vocabulary vocabulary) {
+        data.add(0, vocabulary);
+        notifyItemInserted(0);
+    }
+
+    public void remove(Vocabulary vocabulary) {
+        final int position = data.indexOf(vocabulary);
+        data.remove(position);
+        notifyItemRemoved(position);
+    }
+
     @Override
     public int getItemCount() {
         return data.size();
