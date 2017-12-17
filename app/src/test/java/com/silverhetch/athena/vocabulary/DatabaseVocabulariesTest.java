@@ -30,26 +30,24 @@ public class DatabaseVocabulariesTest {
     @Test
     public void insert_checkContent() throws Exception {
         DatabaseVocabularies vocabularies = new DatabaseVocabularies(databaseFactory);
-        Vocabulary insertedVocabulary = vocabularies.add("word", "note");
+        Vocabulary insertedVocabulary = vocabularies.add("word");
         assertEquals(1, insertedVocabulary.id());
         assertEquals("word", insertedVocabulary.value());
-        assertEquals("note", insertedVocabulary.note());
     }
 
     @Test
     public void query_checkContent() throws Exception {
         DatabaseVocabularies vocabularies = new DatabaseVocabularies(databaseFactory);
-        vocabularies.add("word", "note");
+        vocabularies.add("word");
         Vocabulary insertedVocabulary = vocabularies.all()[0];
         assertEquals(1, insertedVocabulary.id());
         assertEquals("word", insertedVocabulary.value());
-        assertEquals("note", insertedVocabulary.note());
     }
 
     @Test
     public void insert_checkCount() throws Exception {
         DatabaseVocabularies vocabularies = new DatabaseVocabularies(databaseFactory);
-        vocabularies.add("word", "note");
+        vocabularies.add("word");
         assertEquals(1, vocabularies.all().length);
     }
 
@@ -57,7 +55,7 @@ public class DatabaseVocabulariesTest {
     public void insert_invalidedValues() throws Exception {
         try {
             DatabaseVocabularies vocabularies = new DatabaseVocabularies(databaseFactory);
-            vocabularies.add(null, "note");
+            vocabularies.add(null);
             fail();
         } catch (Exception ignore) {
             assertTrue(true);
@@ -67,7 +65,7 @@ public class DatabaseVocabulariesTest {
     @Test
     public void delete_checkCount() throws Exception {
         DatabaseVocabularies vocabularies = new DatabaseVocabularies(databaseFactory);
-        Vocabulary vocabulary = vocabularies.add("word", "note");
+        Vocabulary vocabulary = vocabularies.add("word");
         vocabulary.delete();
         assertEquals(0, vocabularies.all().length);
     }
@@ -75,7 +73,7 @@ public class DatabaseVocabulariesTest {
     @Test
     public void clear() throws Exception {
         DatabaseVocabularies vocabularies = new DatabaseVocabularies(databaseFactory);
-        Vocabulary vocabulary = vocabularies.add("123","note");
+        Vocabulary vocabulary = vocabularies.add("123");
         vocabulary.delete();
         assertEquals(0, vocabularies.all().length);
     }

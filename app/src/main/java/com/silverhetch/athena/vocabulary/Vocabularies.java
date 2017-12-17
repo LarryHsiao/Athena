@@ -5,7 +5,7 @@ package com.silverhetch.athena.vocabulary;
  */
 
 public interface Vocabularies {
-    Vocabulary add(String vocabulary, String note);
+    Vocabulary add(String vocabulary);
 
     Vocabulary[] all();
 

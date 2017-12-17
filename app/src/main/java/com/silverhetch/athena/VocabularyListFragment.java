@@ -1,6 +1,5 @@
 package com.silverhetch.athena;
 
-import android.content.Context;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -11,7 +10,6 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -73,12 +71,15 @@ public class VocabularyListFragment extends Fragment {
             }
         }).attachToRecyclerView(list);
 
-        EditText insertEditText = view.findViewById(R.id.vocabularyList_insertEditText);
+        final EditText insertEditText = view.findViewById(R.id.vocabularyList_insertEditText);
         insertEditText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (insertEditText.getText().toString().isEmpty()) {
+                    return true;
+                }
                 if ((event != null && KEYCODE_ENTER == event.getKeyCode() && event.getAction() == ACTION_DOWN) || IME_ACTION_DONE == actionId) {
-                    Vocabulary newVocabulary = vocabularies.add(v.getText().toString(), "");
+                    Vocabulary newVocabulary = vocabularies.add(v.getText().toString());
                     adapter.add(newVocabulary);
                     v.setText("");
                     return true;

@@ -10,13 +10,11 @@ class ConstVocabulary implements Vocabulary {
     private final DatabaseFactory databaseFactory;
     private final long id;
     private final String value;
-    private final String note;
 
-    ConstVocabulary(DatabaseFactory databaseFactory, long id, String value, String note) {
+    ConstVocabulary(DatabaseFactory databaseFactory, long id, String value) {
         this.databaseFactory = databaseFactory;
         this.id = id;
         this.value = value;
-        this.note = note;
     }
 
 
@@ -28,11 +26,6 @@ class ConstVocabulary implements Vocabulary {
     @Override
     public String value() {
         return value;
-    }
-
-    @Override
-    public String note() {
-        return note;
     }
 
     @Override

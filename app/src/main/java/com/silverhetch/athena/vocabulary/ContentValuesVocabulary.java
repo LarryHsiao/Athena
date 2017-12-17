@@ -30,11 +30,6 @@ class ContentValuesVocabulary implements Vocabulary {
     }
 
     @Override
-    public String note() {
-        return values.getAsString("note");
-    }
-
-    @Override
     public void delete() {
         new VocabularyDeletion(databaseFactory, id).delete();
     }

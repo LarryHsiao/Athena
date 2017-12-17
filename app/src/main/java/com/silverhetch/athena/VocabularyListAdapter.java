@@ -1,6 +1,8 @@
 package com.silverhetch.athena;
 
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
+import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -37,14 +39,11 @@ public class VocabularyListAdapter extends RecyclerView.Adapter<DataBindingViewH
         final Vocabulary vocabulary = data.get(position);
         ItemVocabularyBinding binding = holder.getViewDataBinding();
         binding.setVocabulary(vocabulary);
-        binding.getRoot().setOnLongClickListener(new View.OnLongClickListener() {
+        binding.getRoot().setOnClickListener(new View.OnClickListener() {
             @Override
-            public boolean onLongClick(View v) {
-                vocabulary.delete();
-                final int index = data.indexOf(vocabulary);
-                data.remove(index);
-                notifyItemRemoved(index);
-                return true;
+            public void onClick(View v) {
+                v.getContext().startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://translate.google.com")));
+
             }
         });
     }
@@ -64,5 +63,4 @@ public class VocabularyListAdapter extends RecyclerView.Adapter<DataBindingViewH
     public int getItemCount() {
         return data.size();
     }
-
 }

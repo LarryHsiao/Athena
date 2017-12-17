@@ -9,7 +9,5 @@ public interface Vocabulary {
 
     String value();
 
-    String note();
-
     void delete();
 }

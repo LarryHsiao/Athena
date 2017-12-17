@@ -28,7 +28,7 @@ public class ConstVocabularyTest {
     public void delete() throws Exception {
         final Context context = Robolectric.setupActivity(MainActivity.class);
         Vocabularies vocabularies = new VocabulariesFactory(context).vocabularies();
-        vocabularies.add("abc", "note");
+        vocabularies.add("abc");
         vocabularies.all()[0].delete();
         assertEquals(0, vocabularies.all().length);
     }
