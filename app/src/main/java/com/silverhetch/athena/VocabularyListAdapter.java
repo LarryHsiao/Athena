@@ -2,7 +2,6 @@ package com.silverhetch.athena;
 
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
-import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,10 +19,10 @@ import java.util.List;
  * Created by mikes on 12/15/2017.
  */
 
-public class VocabularyListAdapter extends RecyclerView.Adapter<DataBindingViewHolder> {
+class VocabularyListAdapter extends RecyclerView.Adapter<DataBindingViewHolder> {
     private final List<Vocabulary> data;
 
-    public VocabularyListAdapter(Vocabulary[] vocabularies) {
+    VocabularyListAdapter(Vocabulary[] vocabularies) {
         this.data = new ArrayList<>(Arrays.asList(vocabularies));
     }
 
@@ -42,7 +41,7 @@ public class VocabularyListAdapter extends RecyclerView.Adapter<DataBindingViewH
         binding.getRoot().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                v.getContext().startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://translate.google.com")));
+                v.getContext().startActivity(new Intent(Intent.ACTION_VIEW, new GoogleTranslateUrl(vocabulary).uri()));
 
             }
         });
