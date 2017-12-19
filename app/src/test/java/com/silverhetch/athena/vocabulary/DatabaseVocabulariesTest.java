@@ -1,5 +1,7 @@
 package com.silverhetch.athena.vocabulary;
 
+import android.content.Context;
+
 import com.silverhetch.athena.MainActivity;
 import com.silverhetch.athena.database.DatabaseFactory;
 
@@ -42,6 +44,7 @@ public class DatabaseVocabulariesTest {
         Vocabulary insertedVocabulary = vocabularies.all()[0];
         assertEquals(1, insertedVocabulary.id());
         assertEquals("word", insertedVocabulary.value());
+        assertEquals("", insertedVocabulary.translation());
     }
 
     @Test
@@ -76,5 +79,15 @@ public class DatabaseVocabulariesTest {
         Vocabulary vocabulary = vocabularies.add("123");
         vocabulary.delete();
         assertEquals(0, vocabularies.all().length);
+    }
+
+    @Test
+    public void updateTranslation() throws Exception {
+        final Context context = Robolectric.setupActivity(MainActivity.class);
+        Vocabularies vocabularies = new VocabulariesFactory(context).vocabularies();
+        Vocabulary vocabulary = vocabularies.add("abc");
+        vocabulary.updateTranslation("newTranslation");
+        org.junit.Assert.assertEquals("",vocabulary.translation());
+        org.junit.Assert.assertEquals("newTranslation", vocabularies.all()[0].translation());
     }
 }

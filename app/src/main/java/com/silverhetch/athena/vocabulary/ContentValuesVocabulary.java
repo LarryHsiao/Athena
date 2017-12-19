@@ -30,7 +30,17 @@ class ContentValuesVocabulary implements Vocabulary {
     }
 
     @Override
+    public String translation() {
+        return values.getAsString("translation");
+    }
+
+    @Override
     public void delete() {
         new VocabularyDeletion(databaseFactory, id).delete();
+    }
+
+    @Override
+    public Vocabulary updateTranslation(String translation) {
+        return new VocabularyTranslationUpdate(databaseFactory, this).update(translation);
     }
 }

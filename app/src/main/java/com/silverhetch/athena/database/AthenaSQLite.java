@@ -11,14 +11,15 @@ import android.database.sqlite.SQLiteOpenHelper;
 class AthenaSQLite extends SQLiteOpenHelper {
 
     AthenaSQLite(Context context) {
-        super(context, "athena.db", null, 6);
+        super(context, "athena.db", null, 7);
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("CREATE TABLE IF NOT EXISTS vocabulary ( " +
                 "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                "value TEXT NOT NULL " +
+                "value TEXT NOT NULL, " +
+                "translation TEXT NOT NULL " +
                 ");");
     }
 

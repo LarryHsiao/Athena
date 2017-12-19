@@ -32,4 +32,14 @@ public class ConstVocabularyTest {
         vocabularies.all()[0].delete();
         assertEquals(0, vocabularies.all().length);
     }
+
+    @Test
+    public void updateTranslation() throws Exception {
+        final Context context = Robolectric.setupActivity(MainActivity.class);
+        Vocabularies vocabularies = new VocabulariesFactory(context).vocabularies();
+        Vocabulary vocabulary = vocabularies.add("abc");
+        Vocabulary newVocabulary = vocabulary.updateTranslation("newTranslation");
+        assertEquals("",vocabulary.translation());
+        assertEquals("newTranslation", newVocabulary.translation());
+    }
 }

@@ -1,6 +1,5 @@
 package com.silverhetch.athena.translatior;
 
-import android.util.Log;
 import android.util.Xml;
 
 import com.silverhetch.athena.translatior.api.TranslatorApiFactory;
@@ -12,8 +11,6 @@ import org.xmlpull.v1.XmlPullParser;
 import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.List;
-
-import static android.content.ContentValues.TAG;
 
 /**
  * Created by mikes on 12/17/2017.

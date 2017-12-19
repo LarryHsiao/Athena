@@ -25,6 +25,7 @@ class DatabaseVocabularies implements Vocabularies {
         try (SQLiteDatabase database = databaseFactory.database()) {
             ContentValues insertValues = new ContentValues();
             insertValues.put("value", value);
+            insertValues.put("translation","");
             final long insertedId = database.insert("vocabulary", null, insertValues);
             if (-1 == insertedId) {
                 throw new RuntimeException("insertion failed");
@@ -42,7 +43,9 @@ class DatabaseVocabularies implements Vocabularies {
             while (cursor.moveToNext()) {
                 result.add(new ConstVocabulary(databaseFactory,
                         cursor.getLong(cursor.getColumnIndex("id")),
-                        cursor.getString(cursor.getColumnIndex("value"))));
+                        cursor.getString(cursor.getColumnIndex("value")),
+                        cursor.getString(cursor.getColumnIndex("translation"))
+                ));
             }
             return result.toArray(new Vocabulary[result.size()]);
         }
@@ -52,7 +55,7 @@ class DatabaseVocabularies implements Vocabularies {
     public void clear() {
         try (SQLiteDatabase database = databaseFactory.database();
         ) {
-            database.delete("vocabulary", null,null);
+            database.delete("vocabulary", null, null);
         }
     }
 }

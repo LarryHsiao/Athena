@@ -9,5 +9,9 @@ public interface Vocabulary {
 
     String value();
 
+    String translation() ;
+
     void delete();
+
+    Vocabulary updateTranslation(String translation);
 }
