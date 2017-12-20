@@ -1,8 +1,8 @@
-package com.silverhetch.athena.translatior;
+package com.silverhetch.athena.translation;
 
 import android.util.Xml;
 
-import com.silverhetch.athena.translatior.api.TranslatorApiFactory;
+import com.silverhetch.athena.translation.api.TranslateApiFactory;
 import com.silverhetch.clotho.connection.HttpRequest;
 import com.silverhetch.clotho.connection.HttpResponse;
 
@@ -16,11 +16,11 @@ import java.util.List;
  * Created by mikes on 12/17/2017.
  */
 
-public class TranslatorImpl implements Translator {
+public class TranslationImpl implements Translation {
 
     @Override
     public String translate(String input)throws Exception {
-            HttpRequest get = new TranslatorApiFactory().api(input);
+            HttpRequest get = new TranslateApiFactory().api(input);
             HttpResponse response = get.request();
             if (response.code != 200) {
                 throw new RuntimeException("Response code not 200");

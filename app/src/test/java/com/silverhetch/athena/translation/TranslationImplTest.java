@@ -1,4 +1,4 @@
-package com.silverhetch.athena.translatior;
+package com.silverhetch.athena.translation;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -10,10 +10,10 @@ import static org.junit.Assert.assertEquals;
  * Created by mikes on 12/17/2017.
  */
 @RunWith(RobolectricTestRunner.class)
-public class TranslatorImplTest {
+public class TranslationImplTest {
     @Test
     public void translate() throws Exception {
-        String result = new TranslatorImpl().translate("apple");
+        String result = new TranslationImpl().translate("apple");
         assertEquals("蘋果", result);
     }
 }

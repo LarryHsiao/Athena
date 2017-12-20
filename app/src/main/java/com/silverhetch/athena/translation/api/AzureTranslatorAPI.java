@@ -1,4 +1,4 @@
-package com.silverhetch.athena.translatior.api;
+package com.silverhetch.athena.translation.api;
 
 import com.silverhetch.clotho.connection.HttpGet;
 
