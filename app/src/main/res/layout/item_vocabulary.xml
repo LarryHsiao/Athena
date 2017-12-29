@@ -20,7 +20,7 @@
             android:layout_centerVertical="true"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
-            android:text="@{vocabulary.value()}"
+            android:text="@{vocabulary.value()+vocabulary.translation()}"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             tools:text="Vocabulary text" />
     </RelativeLayout>

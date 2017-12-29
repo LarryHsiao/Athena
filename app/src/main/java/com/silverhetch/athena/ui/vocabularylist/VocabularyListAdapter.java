@@ -1,12 +1,12 @@
-package com.silverhetch.athena;
+package com.silverhetch.athena.ui.vocabularylist;
 
-import android.content.Intent;
 import android.databinding.DataBindingUtil;
+import android.support.v4.app.LoaderManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 
+import com.silverhetch.athena.R;
 import com.silverhetch.athena.databinding.ItemVocabularyBinding;
 import com.silverhetch.athena.vocabulary.Vocabulary;
 import com.silverhetch.util.view.DataBindingViewHolder;
@@ -18,7 +18,6 @@ import java.util.List;
 /**
  * Created by mikes on 12/15/2017.
  */
-
 class VocabularyListAdapter extends RecyclerView.Adapter<DataBindingViewHolder> {
     private final List<Vocabulary> data;
 
@@ -36,15 +35,8 @@ class VocabularyListAdapter extends RecyclerView.Adapter<DataBindingViewHolder> 
     @Override
     public void onBindViewHolder(DataBindingViewHolder holder, int position) {
         final Vocabulary vocabulary = data.get(position);
-        ItemVocabularyBinding binding = holder.getViewDataBinding();
+        final ItemVocabularyBinding binding = holder.getViewDataBinding();
         binding.setVocabulary(vocabulary);
-        binding.getRoot().setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                v.getContext().startActivity(new Intent(Intent.ACTION_VIEW, new GoogleTranslateUrl(vocabulary).uri()));
-
-            }
-        });
     }
 
     public void add(Vocabulary vocabulary) {
@@ -61,5 +53,16 @@ class VocabularyListAdapter extends RecyclerView.Adapter<DataBindingViewHolder> 
     @Override
     public int getItemCount() {
         return data.size();
+    }
+
+    public void notifyItemChanged(Vocabulary translatedVocabulary) {
+        for (int i = 0; i < data.size(); i++) {
+            Vocabulary original = data.get(i);
+            if (original.id() == translatedVocabulary.id()){
+                data.add(i, translatedVocabulary);
+                data.remove(original);
+                notifyItemChanged(i);
+            }
+        }
     }
 }

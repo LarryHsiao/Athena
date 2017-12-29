@@ -25,7 +25,7 @@ class DatabaseVocabularies implements Vocabularies {
         try (SQLiteDatabase database = databaseFactory.database()) {
             ContentValues insertValues = new ContentValues();
             insertValues.put("value", value);
-            insertValues.put("translation","");
+            insertValues.put("translation", "");
             final long insertedId = database.insert("vocabulary", null, insertValues);
             if (-1 == insertedId) {
                 throw new RuntimeException("insertion failed");
@@ -48,6 +48,40 @@ class DatabaseVocabularies implements Vocabularies {
                 ));
             }
             return result.toArray(new Vocabulary[result.size()]);
+        }
+    }
+
+    @Override
+    public Vocabulary[] search(String keyword) {
+        try (SQLiteDatabase database = databaseFactory.database();
+             Cursor cursor = database.query("vocabulary", null, "value LIKE ?", new String[]{keyword + "%"}, null, null, null);
+        ) {
+            List<Vocabulary> result = new ArrayList<>();
+            while (cursor.moveToNext()) {
+                result.add(new ConstVocabulary(databaseFactory,
+                        cursor.getLong(cursor.getColumnIndex("id")),
+                        cursor.getString(cursor.getColumnIndex("value")),
+                        cursor.getString(cursor.getColumnIndex("translation"))
+                ));
+            }
+            return result.toArray(new Vocabulary[result.size()]);
+        }
+    }
+
+    @Override
+    public Vocabulary byId(long id) {
+        try (SQLiteDatabase database = databaseFactory.database();
+             Cursor cursor = database.query("vocabulary", null, "id=?", new String[]{String.valueOf(id)}, null, null, null);
+        ) {
+            if (cursor.getCount() == 0) {
+                throw new RuntimeException("vocabulary not found id: " + id);
+            }
+            cursor.moveToNext();
+            return new ConstVocabulary(databaseFactory,
+                    cursor.getLong(cursor.getColumnIndex("id")),
+                    cursor.getString(cursor.getColumnIndex("value")),
+                    cursor.getString(cursor.getColumnIndex("translation"))
+            );
         }
     }
 

@@ -5,8 +5,6 @@ import android.content.Context;
 import com.silverhetch.athena.MainActivity;
 import com.silverhetch.athena.database.DatabaseFactory;
 
-import junit.framework.Assert;
-
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -42,6 +40,24 @@ public class DatabaseVocabulariesTest {
         DatabaseVocabularies vocabularies = new DatabaseVocabularies(databaseFactory);
         vocabularies.add("word");
         Vocabulary insertedVocabulary = vocabularies.all()[0];
+        assertEquals(1, insertedVocabulary.id());
+        assertEquals("word", insertedVocabulary.value());
+        assertEquals("", insertedVocabulary.translation());
+    }
+
+    @Test
+    public void search_checkCount() throws Exception {
+        DatabaseVocabularies vocabularies = new DatabaseVocabularies(databaseFactory);
+        vocabularies.add("word");
+        vocabularies.add("word2");
+        assertEquals(2, vocabularies.search("word").length);
+    }
+
+    @Test
+    public void byId_checkContent() throws Exception {
+        DatabaseVocabularies vocabularies = new DatabaseVocabularies(databaseFactory);
+        vocabularies.add("word");
+        Vocabulary insertedVocabulary = vocabularies.byId(1);
         assertEquals(1, insertedVocabulary.id());
         assertEquals("word", insertedVocabulary.value());
         assertEquals("", insertedVocabulary.translation());
@@ -87,7 +103,7 @@ public class DatabaseVocabulariesTest {
         Vocabularies vocabularies = new VocabulariesFactory(context).vocabularies();
         Vocabulary vocabulary = vocabularies.add("abc");
         vocabulary.updateTranslation("newTranslation");
-        org.junit.Assert.assertEquals("",vocabulary.translation());
+        org.junit.Assert.assertEquals("", vocabulary.translation());
         org.junit.Assert.assertEquals("newTranslation", vocabularies.all()[0].translation());
     }
 }

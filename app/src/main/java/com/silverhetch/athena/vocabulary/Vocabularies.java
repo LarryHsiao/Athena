@@ -9,5 +9,9 @@ public interface Vocabularies {
 
     Vocabulary[] all();
 
+    Vocabulary[] search(String keyword);
+
+    Vocabulary byId(long id);
+
     void clear();
 }

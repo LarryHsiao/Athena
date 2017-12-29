@@ -9,16 +9,16 @@ import com.silverhetch.athena.database.DatabaseFactory;
  * Created by mikes on 12/20/2017.
  */
 
-public class VocabularyTranslationUpdate {
+class VocabularyTranslationUpdate {
     private final DatabaseFactory databaseFactory;
     private final Vocabulary vocabulary;
 
-    public VocabularyTranslationUpdate(DatabaseFactory databaseFactory, Vocabulary vocabulary) {
+    VocabularyTranslationUpdate(DatabaseFactory databaseFactory, Vocabulary vocabulary) {
         this.databaseFactory = databaseFactory;
         this.vocabulary = vocabulary;
     }
 
-    public Vocabulary update(String translation){
+    Vocabulary update(String translation){
         try (SQLiteDatabase database = databaseFactory.database()) {
             ContentValues values = new ContentValues();
             values.put("translation", translation);
