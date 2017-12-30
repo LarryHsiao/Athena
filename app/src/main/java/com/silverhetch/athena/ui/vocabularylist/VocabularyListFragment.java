@@ -4,8 +4,6 @@ import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.LoaderManager;
-import android.support.v4.content.Loader;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.KeyEvent;
@@ -55,7 +53,7 @@ public class VocabularyListFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         final Vocabularies vocabularies = new VocabulariesFactory(getContext()).vocabularies();
-        final VocabularyListAdapter adapter = new VocabularyListAdapter(vocabularies.all());
+        final VocabularyListAdapter adapter = new VocabularyListAdapter(getLoaderManager(), vocabularies.all());
         final RecyclerView list = binding.getRoot().findViewById(R.id.vocabularyList_recyclerView);
         list.setHasFixedSize(true);
         list.setAdapter(adapter);
@@ -84,27 +82,6 @@ public class VocabularyListFragment extends Fragment {
                 if ((event != null && KEYCODE_ENTER == event.getKeyCode() && event.getAction() == ACTION_DOWN) || IME_ACTION_DONE == actionId) {
                     final Vocabulary newVocabulary = vocabularies.add(v.getText().toString());
                     adapter.add(newVocabulary);
-
-                    getLoaderManager().initLoader(123, null, new LoaderManager.LoaderCallbacks<Vocabulary>() {
-                        @Override
-                        public Loader<Vocabulary> onCreateLoader(int id, Bundle args) {
-                            return new TranslationLoader(binding.getRoot().getContext(), newVocabulary.id());
-                        }
-
-                        @Override
-                        public void onLoadFinished(Loader<Vocabulary> loader, Vocabulary translatedVocabulary) {
-                            if (translatedVocabulary == null || translatedVocabulary.translation().equals(translatedVocabulary.value())) {
-                                return;
-                            }
-                            adapter.notifyItemChanged(translatedVocabulary);
-                            getLoaderManager().destroyLoader(123);
-                        }
-
-                        @Override
-                        public void onLoaderReset(Loader<Vocabulary> loader) {
-                        }
-                    }).forceLoad();
-
                     v.setText("");
                     return true;
                 }

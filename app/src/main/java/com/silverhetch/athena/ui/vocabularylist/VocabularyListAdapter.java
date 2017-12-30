@@ -1,7 +1,9 @@
 package com.silverhetch.athena.ui.vocabularylist;
 
 import android.databinding.DataBindingUtil;
+import android.os.Bundle;
 import android.support.v4.app.LoaderManager;
+import android.support.v4.content.Loader;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
@@ -20,8 +22,10 @@ import java.util.List;
  */
 class VocabularyListAdapter extends RecyclerView.Adapter<DataBindingViewHolder> {
     private final List<Vocabulary> data;
+    private final LoaderManager loaderManager;
 
-    VocabularyListAdapter(Vocabulary[] vocabularies) {
+    VocabularyListAdapter(LoaderManager loaderManager, Vocabulary[] vocabularies) {
+        this.loaderManager = loaderManager;
         this.data = new ArrayList<>(Arrays.asList(vocabularies));
     }
 
@@ -37,6 +41,31 @@ class VocabularyListAdapter extends RecyclerView.Adapter<DataBindingViewHolder> 
         final Vocabulary vocabulary = data.get(position);
         final ItemVocabularyBinding binding = holder.getViewDataBinding();
         binding.setVocabulary(vocabulary);
+        if (vocabulary.translation().isEmpty()) {
+            translate(vocabulary, binding);
+        }
+    }
+
+    private void translate(final Vocabulary vocabulary, final ItemVocabularyBinding binding) {
+        loaderManager.initLoader(((int) vocabulary.id()), null, new LoaderManager.LoaderCallbacks<Vocabulary>() {
+            @Override
+            public Loader<Vocabulary> onCreateLoader(int id, Bundle args) {
+                return new TranslationLoader(binding.getRoot().getContext(), vocabulary.id());
+            }
+
+            @Override
+            public void onLoadFinished(Loader<Vocabulary> loader, Vocabulary translatedVocabulary) {
+                if (translatedVocabulary == null || translatedVocabulary.translation().equals(translatedVocabulary.value())) {
+                    return;
+                }
+                notifyItemChanged(translatedVocabulary);
+                loaderManager.destroyLoader(loader.getId());
+            }
+
+            @Override
+            public void onLoaderReset(Loader<Vocabulary> loader) {
+            }
+        }).forceLoad();
     }
 
     public void add(Vocabulary vocabulary) {
@@ -55,10 +84,10 @@ class VocabularyListAdapter extends RecyclerView.Adapter<DataBindingViewHolder> 
         return data.size();
     }
 
-    public void notifyItemChanged(Vocabulary translatedVocabulary) {
+    private void notifyItemChanged(Vocabulary translatedVocabulary) {
         for (int i = 0; i < data.size(); i++) {
             Vocabulary original = data.get(i);
-            if (original.id() == translatedVocabulary.id()){
+            if (original.id() == translatedVocabulary.id()) {
                 data.add(i, translatedVocabulary);
                 data.remove(original);
                 notifyItemChanged(i);
