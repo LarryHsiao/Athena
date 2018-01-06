@@ -28,7 +28,9 @@ class AndroidSpeech implements Speech {
             @Override
             public void onInit(int status) {
                 speechStatus = status;
-                textToSpeech.setLanguage(Locale.ENGLISH);
+                if (speechStatus == TextToSpeech.SUCCESS) {
+                    textToSpeech.setLanguage(Locale.ENGLISH);
+                }
             }
         });
     }
