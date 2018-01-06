@@ -6,6 +6,7 @@ import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import com.silverhetch.athena.R;
@@ -17,15 +18,23 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import static android.speech.tts.TextToSpeech.QUEUE_FLUSH;
+
 /**
  * Created by mikes on 12/15/2017.
  */
 class VocabularyListAdapter extends RecyclerView.Adapter<DataBindingViewHolder> {
+    public interface ClickListener {
+        void onClick(Vocabulary vocabulary);
+    }
+
     private final List<Vocabulary> data;
     private final LoaderManager loaderManager;
+    private final ClickListener clickListener;
 
-    VocabularyListAdapter(LoaderManager loaderManager, Vocabulary[] vocabularies) {
+    VocabularyListAdapter(LoaderManager loaderManager, ClickListener clickListener, Vocabulary[] vocabularies) {
         this.loaderManager = loaderManager;
+        this.clickListener = clickListener;
         this.data = new ArrayList<>(Arrays.asList(vocabularies));
     }
 
@@ -41,6 +50,12 @@ class VocabularyListAdapter extends RecyclerView.Adapter<DataBindingViewHolder> 
         final Vocabulary vocabulary = data.get(position);
         final ItemVocabularyBinding binding = holder.getViewDataBinding();
         binding.setVocabulary(vocabulary);
+        binding.getRoot().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                clickListener.onClick(vocabulary);
+            }
+        });
         if (vocabulary.translation().isEmpty()) {
             translate(vocabulary, binding);
         }

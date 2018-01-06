@@ -2,6 +2,7 @@ package com.silverhetch.athena.ui.vocabularylist;
 
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
+import android.speech.tts.TextToSpeech;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
@@ -16,11 +17,14 @@ import android.widget.TextView;
 import com.silverhetch.athena.R;
 import com.silverhetch.athena.databinding.FragmentVocabularyBinding;
 import com.silverhetch.athena.databinding.ItemVocabularyBinding;
+import com.silverhetch.athena.speech.Speech;
+import com.silverhetch.athena.speech.SpeechFactory;
 import com.silverhetch.athena.vocabulary.Vocabularies;
 import com.silverhetch.athena.vocabulary.VocabulariesFactory;
 import com.silverhetch.athena.vocabulary.Vocabulary;
 import com.silverhetch.util.view.DataBindingViewHolder;
 
+import static android.speech.tts.TextToSpeech.QUEUE_FLUSH;
 import static android.support.v7.widget.helper.ItemTouchHelper.END;
 import static android.view.KeyEvent.ACTION_DOWN;
 import static android.view.KeyEvent.KEYCODE_ENTER;
@@ -30,8 +34,9 @@ import static android.view.inputmethod.EditorInfo.IME_ACTION_DONE;
  * Created by mikes on 12/15/2017.
  */
 
-public class VocabularyListFragment extends Fragment {
+public class VocabularyListFragment extends Fragment implements VocabularyListAdapter.ClickListener {
     private FragmentVocabularyBinding binding;
+    private Speech speech;
 
     public static Fragment newInstance() {
         return new VocabularyListFragment();
@@ -40,6 +45,8 @@ public class VocabularyListFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        speech = new SpeechFactory().speech(getContext());
+        speech.initial();
     }
 
     @Nullable
@@ -53,7 +60,7 @@ public class VocabularyListFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         final Vocabularies vocabularies = new VocabulariesFactory(getContext()).vocabularies();
-        final VocabularyListAdapter adapter = new VocabularyListAdapter(getLoaderManager(), vocabularies.all());
+        final VocabularyListAdapter adapter = new VocabularyListAdapter(getLoaderManager(),this, vocabularies.all());
         final RecyclerView list = binding.getRoot().findViewById(R.id.vocabularyList_recyclerView);
         list.setHasFixedSize(true);
         list.setAdapter(adapter);
@@ -82,11 +89,17 @@ public class VocabularyListFragment extends Fragment {
                 if ((event != null && KEYCODE_ENTER == event.getKeyCode() && event.getAction() == ACTION_DOWN) || IME_ACTION_DONE == actionId) {
                     final Vocabulary newVocabulary = vocabularies.add(v.getText().toString());
                     adapter.add(newVocabulary);
+                    list.scrollToPosition(0);
                     v.setText("");
                     return true;
                 }
                 return false;
             }
         });
+    }
+
+    @Override
+    public void onClick(Vocabulary vocabulary) {
+        speech.speak(vocabulary.value());
     }
 }
