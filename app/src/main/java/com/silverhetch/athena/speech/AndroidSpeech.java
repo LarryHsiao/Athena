@@ -2,6 +2,7 @@ package com.silverhetch.athena.speech;
 
 import android.content.Context;
 import android.speech.tts.TextToSpeech;
+import android.speech.tts.Voice;
 
 import java.util.Locale;
 

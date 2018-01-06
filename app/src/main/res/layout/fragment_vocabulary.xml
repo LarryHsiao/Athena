@@ -32,6 +32,11 @@
             android:id="@+id/vocabularyList_recyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            app:fastScrollEnabled="true"
+            app:fastScrollVerticalThumbDrawable="@drawable/list_scrollbar_thumb_selector"
+            app:fastScrollVerticalTrackDrawable="@drawable/list_scrollbar_track_selector"
+            app:fastScrollHorizontalThumbDrawable="@drawable/list_scrollbar_thumb_selector"
+            app:fastScrollHorizontalTrackDrawable="@drawable/list_scrollbar_track_selector"
             app:layoutManager="android.support.v7.widget.LinearLayoutManager"
             tools:listitem="@layout/item_vocabulary" />
     </LinearLayout>
