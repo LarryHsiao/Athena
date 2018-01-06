@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "api-5242282368913759152-413293",
+  "private_key_id": "84106bb4948736a669b5ba369baa2dbeb41e4fca",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCqF6QvuzWProLJ\n+a8KsMVrIWmVhWZp/qOjiRBhSuW2C7ecPjt4CLDBHUzzx5jFuohORnxgWNP/llzD\nqrg65rei3ZvP3xhvqZNMb7vamE64T5rJRJICuHPds7iR0y+DXiTh2cQl27cewFvL\nh6HIuvUHwvHnpysQls4dbwRMZfN+B+yQk5D17azzE/uQngzFljh1iPEATdf/3BMi\nGMOcSAMAxekdkAGPK0YFQRBEX37AbD/X/B4o0vu+WIH4tGoSZmXekV8Vfksa84dp\nhCp9upVfKhfVEfgjElj2WlzSnX0n5AAbbCrSEX2fqC2iyGgyVd+0bm0YwkopTE37\nJ67kXCv1AgMBAAECggEAHJWDgIf3/NDpZtLgcS36x0Gisj9sUhS6YEGo8Ii7KMg4\nT3f/23Cub42igHdC+7uYq3rZ7QEQg2u75B/8/N0H8EVIqXrG6wD24YoHajldRUkP\nbJJq7S0dP50zv8HbQrrf/NpxRaFyWScfZglBjW+pvOesam8j5BJLyhN9h+88J6ob\nq/9+tH0NDNtlinBnGfALV0nipEdRnuLPLXjaAU1I2HhPuIHi11C7+0U/lq1Bi8DI\nwNsbvs6C+xtBgcDrxysNMoDdlkQ7luDovPF8dZ8KKT3PXii/iq7vZm41rUjJtUi/\nwVo+kw2C2vmyIZ+qbSp6cQFhNSjmH7AU5cFhNdk6cQKBgQDpNZUBveQDNZ4fDm2O\nBYro41izqL72g44+mw0K1NebCM4T/bL7PWX7v2VLzjcWdsVpOCFhePlmZW1JPIWL\nDgZy3QH2bX8eUPu2debgdzwR+qmCenshbXjOtzPwBZEP0Bl5ErMBDYwY8cbuP+JE\nBrzZu0EBlzABjfbT/KStAx5VWQKBgQC6twCue5RWSK7J7brj4LXkvp1NkwSInkPz\nLhnmurHM3aPwlIATHFSbYicm0jVfWZ/adNsbSvPXt+mRkv78xIDykCxr2WgRWLjq\nKdOIIaG+sZGwSHHFatLesivlghws3KH6IBhocFEkd6ldtmuM2r65Ef6oxuUPrgF+\nRmBZ3Y8L/QKBgQDiPQLzD56VpnxhMIQDlUjvKS6yC/BGAdYK0ixS56zKUD5rkmEB\n7sxy73h7k/BJMKvOqY9omg2I0ri0pav//HkxEUqIIC2D4Zhvp+10sPdrkbrEQ8IT\n6bmbAIu4PA5AQueTVxqk2NmikVslYoBE8ixfJZOo0VzXBTwA50VyOmZA8QKBgGol\nKS0IMh8PONaw4GM11xIQTwrPvm8QUh7IIY9qqTOG+PEG6vxySaMAHLPUIuVu5RJj\nBkCwzojfE9hfUbhO2eOLlMVHFgNuhckROCEWxYXMGr+1n4AUp4ZUkeHqoqvaTfcN\nEfMljuuFX3JYBzJPFMfPdA9s6sGMMWshBRtxeiXdAoGAR4OCn4D8wYG/IoVpVDav\n82O9Lsnou1QQ5ICIPuHn5WQaOIbW1F6LAWkEjswOTMVCOCoiXeIKUVy6gayCB5/S\n7ykoglzTIiXfNPbLKXAWYPn6Dj3X203f8I+kgUnNzPLcZu88pCunBEfImeyOsXDa\nxpeb1kYFpgFjJrIxBG5uFh8=\n-----END PRIVATE KEY-----\n",
+  "client_email": "teamcityservice@api-5242282368913759152-413293.iam.gserviceaccount.com",
+  "client_id": "114863104466966240738",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://accounts.google.com/o/oauth2/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/teamcityservice%40api-5242282368913759152-413293.iam.gserviceaccount.com"
+}

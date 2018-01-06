@@ -1,11 +1,17 @@
 apply plugin: 'com.android.application'
 apply plugin: 'jacoco'
+apply plugin: 'com.github.triplet.play'
 
 jacoco {
     toolVersion = "0.7.9"
 }
 
 android {
+    playAccountConfigs {
+        defaultAccountConfig {
+            jsonFile = file('../ci_key.json')
+        }
+    }
     signingConfigs {
         keystore {
             keyAlias 'Athena'
@@ -23,6 +29,7 @@ android {
         versionName "1.0.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         signingConfig signingConfigs.keystore
+        playAccountConfig = playAccountConfigs.defaultAccountConfig
     }
     buildTypes {
         debug {
@@ -62,6 +69,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-core:11.6.2'
     implementation 'com.google.firebase:firebase-crash:11.6.2'
     implementation 'com.google.firebase:firebase-appindexing:11.6.2'
+    implementation 'com.google.firebase:firebase-invites:11.6.2'
     testImplementation 'junit:junit:4.12'
     testImplementation 'org.robolectric:robolectric:3.5.1'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
