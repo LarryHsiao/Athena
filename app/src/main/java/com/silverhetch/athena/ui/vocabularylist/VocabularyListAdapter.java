@@ -26,6 +26,7 @@ import static android.speech.tts.TextToSpeech.QUEUE_FLUSH;
 class VocabularyListAdapter extends RecyclerView.Adapter<DataBindingViewHolder> {
     public interface ClickListener {
         void onClick(Vocabulary vocabulary);
+        void onLongClick(Vocabulary vocabulary);
     }
 
     private final List<Vocabulary> data;
@@ -54,6 +55,13 @@ class VocabularyListAdapter extends RecyclerView.Adapter<DataBindingViewHolder> 
             @Override
             public void onClick(View v) {
                 clickListener.onClick(vocabulary);
+            }
+        });
+        binding.getRoot().setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                clickListener.onLongClick(vocabulary);
+                return true;
             }
         });
         if (vocabulary.translation().isEmpty()) {
