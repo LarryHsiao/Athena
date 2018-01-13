@@ -6,7 +6,7 @@ apply plugin: 'io.fabric'
 jacoco {
     toolVersion = "0.7.9"
 }
-
+final int BUILD_VERSION = System.currentTimeMillis()/1000
 android {
     playAccountConfigs {
         defaultAccountConfig {
@@ -26,7 +26,7 @@ android {
         applicationId "com.silverhetch.athena"
         minSdkVersion 23
         targetSdkVersion 26
-        versionCode 7
+        versionCode BUILD_VERSION
         versionName "1.0.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         signingConfig signingConfigs.keystore
