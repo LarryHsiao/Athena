@@ -6,8 +6,8 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
         android:paddingTop="8dp"
+        android:orientation="vertical"
         tools:context="com.silverhetch.athena.MainActivity">
 
         <android.support.design.widget.TextInputLayout
@@ -33,10 +33,10 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:fastScrollEnabled="true"
-            app:fastScrollVerticalThumbDrawable="@drawable/list_scrollbar_thumb_selector"
-            app:fastScrollVerticalTrackDrawable="@drawable/list_scrollbar_track_selector"
             app:fastScrollHorizontalThumbDrawable="@drawable/list_scrollbar_thumb_selector"
             app:fastScrollHorizontalTrackDrawable="@drawable/list_scrollbar_track_selector"
+            app:fastScrollVerticalThumbDrawable="@drawable/list_scrollbar_thumb_selector"
+            app:fastScrollVerticalTrackDrawable="@drawable/list_scrollbar_track_selector"
             app:layoutManager="android.support.v7.widget.LinearLayoutManager"
             tools:listitem="@layout/item_vocabulary" />
     </LinearLayout>

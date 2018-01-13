@@ -6,6 +6,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.KeyEvent;
@@ -47,6 +48,7 @@ public class VocabularyListFragment extends Fragment implements VocabularyListAd
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(R.string.vocabularyList_title);
         speech = new SpeechFactory().speech(getContext());
         speech.initial();
     }
@@ -99,6 +101,12 @@ public class VocabularyListFragment extends Fragment implements VocabularyListAd
                 return false;
             }
         });
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        speech.release();
     }
 
     @Override

@@ -8,5 +8,6 @@ import android.speech.tts.TextToSpeech;
 
 public interface Speech {
     void initial();
+    void release();
     void speak(String value);
 }
