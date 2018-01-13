@@ -70,6 +70,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 launchListPage();
                 break;
         }
+        item.setChecked(true);
         drawerLayout.closeDrawers();
         return false;
     }

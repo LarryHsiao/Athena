@@ -1,11 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item
-        android:id="@+id/navigation_vocabularyList"
-        android:icon="@drawable/icon_list"
-        android:title="@string/vocabularyList_title" />
-    <item
-        android:id="@+id/navigation_aboutThisApp"
-        android:icon="@drawable/icon_info"
-        android:title="@string/navigation_aboutThisApp" />
+    <group android:checkableBehavior="single"
+        android:id="@+id/navigation_main">
+        <item
+            android:id="@+id/navigation_vocabularyList"
+            android:icon="@drawable/icon_list"
+            android:checked="true"
+            android:title="@string/vocabularyList_title" />
+    </group>
+    <group android:checkableBehavior="single"
+        android:id="@+id/navigation_setting"
+        >
+        <item
+            android:id="@+id/navigation_aboutThisApp"
+            android:icon="@drawable/icon_info"
+            android:title="@string/navigation_aboutThisApp" />
+    </group>
 </menu>
