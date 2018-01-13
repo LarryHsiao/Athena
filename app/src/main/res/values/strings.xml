@@ -2,10 +2,10 @@
     <string name="app_name">Athena</string>
 
     <!-- Navigation -->
-    <string name="navigation_aboutThisApp">@string/about_title</string>
+    <string name="navigation_aboutThisApp" translatable="false">@string/about_title</string>
 
     <!-- Vocabulary List-->
-    <string name="vocabularyList_title">@string/app_name</string>
+    <string name="vocabularyList_title" translatable="false">@string/app_name</string>
     <string name="vocabularyList_insertHint">Enter vocabulary to insert.</string>
     <string name="asset_statements" translatable="false">[{\n  \"relation\": [\"delegate_permission/common.handle_all_urls\"],\n  \"target\": {\n    \"namespace\": \"web\",\n    \"site\": \"https://silverhetch.com\",\n  }\n}]</string>
 

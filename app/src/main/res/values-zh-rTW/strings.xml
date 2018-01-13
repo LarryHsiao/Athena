@@ -2,4 +2,5 @@
 <resources>
     <string name="app_name">Athena</string>
     <string name="vocabularyList_insertHint">新增單字</string>
+    <string name="about_title">關於</string>
 </resources>
