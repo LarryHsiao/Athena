@@ -13,6 +13,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import com.silverhetch.athena.ui.about.AboutThisAppFragment;
+import com.silverhetch.athena.ui.setting.SettingFragment;
 import com.silverhetch.athena.ui.vocabularylist.VocabularyListFragment;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -36,7 +37,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         NavigationView navigationView = findViewById(R.id.main_navigation);
         navigationView.setNavigationItemSelectedListener(this);
 
-        launchListPage();
+        if (savedInstanceState == null) {
+            launchListPage();
+        }
     }
 
 
@@ -69,10 +72,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.navigation_vocabularyList:
                 launchListPage();
                 break;
+            case R.id.navigation_setting:
+                launchSettingPage();
+                break;
         }
         item.setChecked(true);
         drawerLayout.closeDrawers();
         return false;
+    }
+
+    private void launchSettingPage() {
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.main_fragmentContainer, SettingFragment.newInstance());
+        transaction.commit();
     }
 
     private void launchAboutPage() {

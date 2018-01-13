@@ -48,9 +48,7 @@ public class VocabularyListFragment extends Fragment implements VocabularyListAd
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(R.string.vocabularyList_title);
         speech = new SpeechFactory().speech(getContext());
-        speech.initial();
     }
 
     @Nullable
@@ -104,9 +102,16 @@ public class VocabularyListFragment extends Fragment implements VocabularyListAd
     }
 
     @Override
-    public void onDestroy() {
-        super.onDestroy();
+    public void onPause() {
+        super.onPause();
         speech.release();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        speech.initial();
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(R.string.vocabularyList_title);
     }
 
     @Override

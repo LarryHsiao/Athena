@@ -38,6 +38,7 @@ class AndroidSpeech implements Speech {
     @Override
     public void release() {
         textToSpeech.stop();
+        textToSpeech.shutdown();
     }
 
     @Override

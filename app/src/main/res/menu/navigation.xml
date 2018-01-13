@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <group android:checkableBehavior="single"
-        android:id="@+id/navigation_main">
+        android:id="@+id/navigation_mainGroup">
         <item
             android:id="@+id/navigation_vocabularyList"
             android:icon="@drawable/icon_list"
@@ -9,8 +9,13 @@
             android:title="@string/vocabularyList_title" />
     </group>
     <group android:checkableBehavior="single"
-        android:id="@+id/navigation_setting"
+        android:id="@+id/navigation_settingGroup"
         >
+        <item android:id="@+id/navigation_setting"
+            android:title="@string/navigation_setting"
+            android:icon="@drawable/icon_setting"
+            />
+
         <item
             android:id="@+id/navigation_aboutThisApp"
             android:icon="@drawable/icon_info"

@@ -3,6 +3,7 @@
 
     <!-- Navigation -->
     <string name="navigation_aboutThisApp" translatable="false">@string/about_title</string>
+    <string name="navigation_setting" translatable="false">@string/setting_title</string>
 
     <!-- Vocabulary List-->
     <string name="vocabularyList_title" translatable="false">@string/app_name</string>
@@ -11,5 +12,10 @@
 
     <!-- About this app -->
     <string name="about_title">About</string>
+
+    <!-- Setting -->
+    <string name="setting_title">Setting</string>
+    <string name="setting_main">Main</string>
+    <string name="setting_NotificationReview">Notification review</string>
 
 </resources>
