@@ -18,4 +18,7 @@
     <string name="setting_main">Main</string>
     <string name="setting_NotificationReview">Notification review</string>
 
+    <!-- Review-->
+    <string name="review_notificationTitle">Review</string>
+    <string name="review_vocabulary" translatable="false">%1$s : %2$s</string>
 </resources>

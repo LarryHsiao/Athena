@@ -6,4 +6,5 @@
     <string name="setting_title">設定</string>
     <string name="setting_main">主要</string>
     <string name="setting_NotificationReview">通知列複習</string>
+    <string name="review_notificationTitle">複習</string>
 </resources>
