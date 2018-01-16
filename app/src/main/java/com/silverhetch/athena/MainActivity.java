@@ -11,6 +11,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.silverhetch.athena.ui.about.AboutThisAppFragment;
 import com.silverhetch.athena.ui.setting.SettingFragment;
@@ -27,12 +28,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         Toolbar toolbar = findViewById(R.id.main_toolbar);
         setSupportActionBar(toolbar);
-        drawerLayout = findViewById(R.id.main_navigationDrawer);
-        drawerLayout.addDrawerListener(drawerToggle);
-        drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.app_drawerOpen, R.string.app_drawerClose);
         ActionBar actionBar = getSupportActionBar();
         actionBar.setHomeButtonEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
+
+        drawerLayout = findViewById(R.id.main_navigationDrawer);
+        drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.app_drawerOpen, R.string.app_drawerClose);
+        drawerLayout.addDrawerListener(drawerToggle);
 
         NavigationView navigationView = findViewById(R.id.main_navigation);
         navigationView.setNavigationItemSelectedListener(this);
