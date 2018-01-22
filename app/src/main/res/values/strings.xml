@@ -12,6 +12,17 @@
 
     <!-- About this app -->
     <string name="about_title">About</string>
+    <string name="about_content">
+        <![CDATA[
+        I`m Larry, the developer of this application. <br>
+        This app is designed for my own need.I put it on the Play store hope this app may also useful to someone. <br>
+        <br>
+        The main purpose of this app is complete. About upcoming feature, i can`t see it right now.<br>
+        <br>
+        This app using content from icon8: <br>
+        <a href=\"https://icons8.com\">https://icons8.com</a><br>
+        ]]>
+    </string>
 
     <!-- Setting -->
     <string name="setting_title">Setting</string>
