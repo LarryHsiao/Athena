@@ -7,4 +7,15 @@
     <string name="setting_main">主要</string>
     <string name="setting_NotificationReview">通知列複習</string>
     <string name="review_notificationTitle">複習</string>
+    <string name="about_content">
+        <![CDATA[
+        我是Laryy，這個app的開發人員<br>
+        這個app主要是依據我個人的需求設計，我把它放到Play Store上希望也可以幫到某些人<br>
+        <br>
+        App的核心功能已經完成，我還沒看見其他的功能。<br>
+        <br>
+        本App使用 icon8 上的圖示: <br>
+        <a href=\"https://icons8.com\">https://icons8.com</a><br>
+        ]]>
+    </string>
 </resources>
