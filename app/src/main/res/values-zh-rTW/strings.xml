@@ -18,4 +18,5 @@
         <a href=\"https://icons8.com\">https://icons8.com</a><br>
         ]]>
     </string>
+    <string name="app_noConnection">無網路連線</string>
 </resources>
