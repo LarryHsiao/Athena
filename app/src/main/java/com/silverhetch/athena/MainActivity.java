@@ -23,6 +23,9 @@ import com.silverhetch.athena.ui.about.AboutThisAppFragment;
 import com.silverhetch.athena.ui.setting.SettingFragment;
 import com.silverhetch.athena.ui.vocabularylist.VocabularyListFragment;
 
+import static android.net.ConnectivityManager.CONNECTIVITY_ACTION;
+import static android.support.design.widget.Snackbar.LENGTH_INDEFINITE;
+
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle drawerToggle;
@@ -33,7 +36,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         this.connectionReceiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
-                invalidateConnectionState();
+                invalidateConnectionIndicator();
             }
         };
     }
@@ -56,7 +59,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         NavigationView navigationView = findViewById(R.id.main_navigation);
         navigationView.setNavigationItemSelectedListener(this);
 
-        connectionSnackBar = Snackbar.make(findViewById(R.id.main_root), R.string.app_noConnection, Snackbar.LENGTH_INDEFINITE);
+        connectionSnackBar = Snackbar.make(findViewById(R.id.main_root), R.string.app_noConnection, LENGTH_INDEFINITE);
 
         if (savedInstanceState == null) {
             launchListPage();
@@ -73,8 +76,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     protected void onResume() {
         super.onResume();
-        registerReceiver(connectionReceiver, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
-        invalidateConnectionState();
+        registerReceiver(connectionReceiver, new IntentFilter(CONNECTIVITY_ACTION));
+        invalidateConnectionIndicator();
     }
 
     @Override
@@ -141,7 +144,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return activeNetwork != null && activeNetwork.isConnectedOrConnecting();
     }
 
-    private void invalidateConnectionState() {
+    private void invalidateConnectionIndicator() {
         if (hasConnection()) {
             connectionSnackBar.dismiss();
         } else {
