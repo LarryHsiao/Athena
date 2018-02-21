@@ -22,7 +22,7 @@
                 android:layout_marginStart="16dp"
                 android:hint="@string/vocabularyList_insertHint"
                 android:imeOptions="actionDone"
-                android:inputType="text"
+                android:inputType="text|textAutoCorrect|textAutoComplete"
                 android:lines="1"
                 android:maxLines="1"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
