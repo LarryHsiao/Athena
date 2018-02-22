@@ -37,7 +37,7 @@ class DatabaseVocabularies implements Vocabularies {
     @Override
     public Vocabulary[] all() {
         try (SQLiteDatabase database = databaseFactory.database();
-             Cursor cursor = database.query("vocabulary", null, null, null, null, null, null);
+             Cursor cursor = database.query("vocabulary", null, null, null, null, null, "id DESC");
         ) {
             List<Vocabulary> result = new ArrayList<>();
             while (cursor.moveToNext()) {
