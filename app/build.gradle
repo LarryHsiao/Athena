@@ -7,6 +7,10 @@ def keystorePropertiesFile = file("signing/variable.properties")
 def keystoreProperties = new Properties()
 keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
 
+def variablePropertiesFile = file("variable.properties")
+def variableProperties = new Properties()
+variableProperties.load(new FileInputStream(variablePropertiesFile))
+
 jacoco {
     toolVersion = "0.7.9"
 }
@@ -36,6 +40,8 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         signingConfig signingConfigs.keystore
         playAccountConfig = playAccountConfigs.defaultAccountConfig
+
+        buildConfigField "String", "AZURE_TRANSLATION_API_KEY", variableProperties['azureTranslateApiKey']
     }
     buildTypes {
         debug {

@@ -1,5 +1,6 @@
 package com.silverhetch.athena.translation.api;
 
+import com.silverhetch.athena.BuildConfig;
 import com.silverhetch.clotho.connection.HttpGet;
 
 import java.net.HttpURLConnection;
@@ -17,6 +18,6 @@ class AzureTranslatorAPI extends HttpGet {
     @Override
     protected void setupConnection(HttpURLConnection connection) throws Exception {
         super.setupConnection(connection);
-        connection.addRequestProperty("Ocp-Apim-Subscription-Key", "c526ec48a9a74b688f044e06ba45971c");
+        connection.addRequestProperty("Ocp-Apim-Subscription-Key", BuildConfig.AZURE_TRANSLATION_API_KEY);
     }
 }
