@@ -3,23 +3,27 @@ apply plugin: 'jacoco'
 apply plugin: 'com.github.triplet.play'
 apply plugin: 'io.fabric'
 
+def keystorePropertiesFile = file("signing/variable.properties")
+def keystoreProperties = new Properties()
+keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+
 jacoco {
     toolVersion = "0.7.9"
 }
-final int BUILD_VERSION = System.currentTimeMillis()/1000
+final int BUILD_VERSION = 1518456430 + (System.currentTimeMillis()/(1000*60*60))
 System.out.println(BUILD_VERSION)
 android {
     playAccountConfigs {
         defaultAccountConfig {
-            jsonFile = file('../ci_key.json')
+            jsonFile = file('../publish.json')
         }
     }
     signingConfigs {
         keystore {
-            keyAlias 'Athena'
-            keyPassword 'aligodoo1999'
-            storeFile file('../keystore.jks')
-            storePassword 'aligodoo1999'
+            keyAlias keystoreProperties['keyAlias']
+            keyPassword keystoreProperties['keyPassword']
+            storeFile file('signing/keystore.jks')
+            storePassword keystoreProperties['storePassword']
         }
     }
     compileSdkVersion 26
